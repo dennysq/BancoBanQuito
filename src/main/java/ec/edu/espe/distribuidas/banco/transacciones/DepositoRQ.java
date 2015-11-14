@@ -1,4 +1,4 @@
-package ec.edu.espe.distribuidas.transacciones;
+package ec.edu.espe.distribuidas.banco.transacciones;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

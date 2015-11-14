@@ -4,7 +4,7 @@ import ec.edu.espe.distribuidas.banco.MensajeRQ;
 import ec.edu.espe.distribuidas.banco.consultas.CuentaClienteRQ;
 import ec.edu.espe.distribuidas.banco.consultas.InfoClienteRQ;
 import ec.edu.espe.distribuidas.banco.seguridad.AutenticacionRQ;
-import ec.edu.espe.distribuidas.transacciones.DepositoRQ;
+import ec.edu.espe.distribuidas.banco.transacciones.DepositoRQ;
 
 public class Tester {
 
