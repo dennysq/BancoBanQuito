@@ -1,6 +1,9 @@
 package ec.edu.espe.distribuidas.banco.consultas;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ec.edu.espe.distribuidas.banco.Cuerpo;
+import ec.edu.espe.distribuidas.banco.util.MyStringUtils;
 
 public class InfoClienteRS implements Cuerpo {
 	private String resultado;
@@ -10,10 +13,10 @@ public class InfoClienteRS implements Cuerpo {
 	private String apellido;
 	private String nombre;
 	private String direccion;
-	private String numeroTelefónico;
+	private String numeroTelefonico;
 	private String numeroMovil;
 	private String correoElectronico;
-	
+
 	private String fechaNacimiento;
 
 	public String asTexto() {
@@ -27,10 +30,32 @@ public class InfoClienteRS implements Cuerpo {
 
 	public void build(String in) {
 		if (this.validate(in)) {
-				this.resultado=in.substring(0,3);
-				this.resultado=in.substring(3,12);
-				//String aux=StringUtils.spli
-		}//hacer todos los request//metodovalidate, build, validar la longitud de la cabecera , que sea RS o RQ validate tipos de respuesta, validate  
+			try {
+				if (in.length() < 412) {
+					in = StringUtils.rightPad(in, 412, " ");
+				}
+				String values[] = MyStringUtils.splitByFixedLengths(in, new int[] { 3, 9, 400 });
+				this.resultado = values[0];
+				this.codigoCliente = values[1];
+				if (resultado.equals("OKO")) {
+					String clientValues[] = StringUtils.splitPreserveAllTokens(values[2].trim(), "|");
+					this.tipoDocumento = clientValues[0].trim();
+					this.valorDocumento=clientValues[1].trim();
+					this.nombre = clientValues[2].trim();
+					this.apellido = clientValues[3].trim();
+					this.direccion = clientValues[4].trim();
+					this.numeroTelefonico = clientValues[5].trim();
+					this.numeroMovil = clientValues[6].trim();
+					this.correoElectronico = clientValues[7].trim();
+					this.fechaNacimiento = clientValues[8].trim();
+				}
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+		} // hacer todos los request//metodovalidate, build, validar la longitud
+			// de la cabecera , que sea RS o RQ validate tipos de respuesta,
+			// validate
 	}
 
 	private boolean validate(String datos) {
@@ -44,6 +69,94 @@ public class InfoClienteRS implements Cuerpo {
 
 	public void setCodigoCliente(String codigoCliente) {
 		this.codigoCliente = codigoCliente;
+	}
+
+	public String getResultado() {
+		return resultado;
+	}
+
+	public void setResultado(String resultado) {
+		this.resultado = resultado;
+	}
+
+	public String getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public String getValorDocumento() {
+		return valorDocumento;
+	}
+
+	public void setValorDocumento(String valorDocumento) {
+		this.valorDocumento = valorDocumento;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getNumeroTelefonico() {
+		return numeroTelefonico;
+	}
+
+	public void setNumeroTelefonico(String numeroTelefonico) {
+		this.numeroTelefonico = numeroTelefonico;
+	}
+
+	public String getNumeroMovil() {
+		return numeroMovil;
+	}
+
+	public void setNumeroMovil(String numeroMovil) {
+		this.numeroMovil = numeroMovil;
+	}
+
+	public String getCorreoElectronico() {
+		return correoElectronico;
+	}
+
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
+	}
+
+	public String getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	@Override
+	public String toString() {
+		return "InfoClienteRS [resultado=" + resultado + ", codigoCliente=" + codigoCliente + ", tipoDocumento="
+				+ tipoDocumento + ", valorDocumento=" + valorDocumento + ", apellido=" + apellido + ", nombre=" + nombre
+				+ ", direccion=" + direccion + ", numeroTelefonico=" + numeroTelefonico + ", numeroMovil=" + numeroMovil
+				+ ", correoElectronico=" + correoElectronico + ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 
 }

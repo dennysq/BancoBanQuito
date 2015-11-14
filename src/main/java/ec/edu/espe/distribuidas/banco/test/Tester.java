@@ -3,6 +3,7 @@ package ec.edu.espe.distribuidas.banco.test;
 import ec.edu.espe.distribuidas.banco.MensajeRQ;
 import ec.edu.espe.distribuidas.banco.consultas.CuentaClienteRQ;
 import ec.edu.espe.distribuidas.banco.consultas.InfoClienteRQ;
+import ec.edu.espe.distribuidas.banco.consultas.InfoClienteRS;
 import ec.edu.espe.distribuidas.banco.seguridad.AutenticacionRQ;
 import ec.edu.espe.distribuidas.banco.transacciones.DepositoRQ;
 
@@ -20,7 +21,7 @@ public class Tester {
 		InfoClienteRQ icr = new InfoClienteRQ();
 		icr.setTipoDocumento("CEDUL");
 		icr.setValor("0604133546");
-		mensajeRq = new MensajeRQ("12345678", "INFOCLIE01");
+		mensajeRq = new MensajeRQ("12345678", "CLIBUSSIMP");
 		mensajeRq.setCuerpo(icr);
 		System.out.println(mensajeRq.asTexto());
 		System.out.println("==================================================================");
@@ -45,6 +46,10 @@ public class Tester {
 		// sha1Hex
 		// md2md5
 		// DigestUtil
+		InfoClienteRS test=new InfoClienteRS();
+		test.build("BAD123456789CEDUL|0604133546|Dennys|Quiroz|Armenia 1||0983015478|dennys@gmail.com|1993-12-12");
+		System.out.println(test);
+		
 
 	}
 
