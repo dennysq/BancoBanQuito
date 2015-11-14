@@ -1,7 +1,5 @@
 package ec.edu.espe.distribuidas.banco.consultas;
 
-import org.apache.commons.lang3.StringUtils;
-
 import ec.edu.espe.distribuidas.banco.Cuerpo;
 
 public class CuentaClienteRQ implements Cuerpo {
