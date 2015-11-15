@@ -1,5 +1,7 @@
 package ec.edu.espe.distribuidas.banco.model;
 
+import ec.edu.espe.distribuidas.banco.Cuerpo;
+
 public class Cuenta {
 	private String numeroCuenta;
 	private String tipoCuenta;
@@ -44,8 +46,9 @@ public class Cuenta {
 
 	@Override
 	public String toString() {
-		return "Cuenta [numeroCuenta=" + numeroCuenta + ", tipoCuenta=" + tipoCuenta + ", saldoActual=" + saldoActual
-				+ ", fechaYHoraUM=" + fechaYHoraUM + "]";
+		//luis (y)
+		return  numeroCuenta +Cuerpo.FIELD_SEPARATOR_CHAR + tipoCuenta +Cuerpo.FIELD_SEPARATOR_CHAR + saldoActual
+				+ Cuerpo.FIELD_SEPARATOR_CHAR+ fechaYHoraUM + Cuerpo.FIELD_SEPARATOR_CHAR;
 	}
 
 }
