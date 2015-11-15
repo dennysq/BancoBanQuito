@@ -19,7 +19,7 @@ public class CuentaClienteRS implements Cuerpo {
 
 	public String asTexto() {
 
-		return this.resultado + this.codigoCliente + this.numCuentas;
+		return this.resultado + this.codigoCliente + this.numCuentas+cuentas;
 
 	}
 
