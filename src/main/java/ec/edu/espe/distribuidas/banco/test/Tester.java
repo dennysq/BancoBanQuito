@@ -56,7 +56,7 @@ public class Tester {
 		System.out.println("===============================================================================================================");
 		mensajeRs = new MensajeRS("12345678", "CLIBUSCUEN");
 		CuentaClienteRS test2 = new CuentaClienteRS();
-		test2.build("OKO123456789030001|AH|200,12|20151101122010|0002|CO|2412,12|20151101122010|0003|AH|300,12|20151101122010");
+		test2.build("OKO123456789030001|AH||20151101122010|0002|CO|2412,12|20151101122010|0003|AH|300,12|20151101122010");
 		mensajeRs.setCuerpo(test2);
 		System.out.println(mensajeRs.asTexto());
 		System.out.println(test2);

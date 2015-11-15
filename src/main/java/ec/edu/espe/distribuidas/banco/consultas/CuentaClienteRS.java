@@ -19,7 +19,10 @@ public class CuentaClienteRS implements Cuerpo {
 
 	public String asTexto() {
 
-		return this.codigoCliente;
+		return this.resultado
+				+this.codigoCliente
+				+this.numCuentas;
+				
 	}
 
 	public String getCodigoCliente() {
@@ -76,7 +79,7 @@ public class CuentaClienteRS implements Cuerpo {
 						cuentas.clear();
 					}
 					if (resultado.equals("OKO")) {
-						String clientValues[] = StringUtils.splitPreserveAllTokens(values[3].trim(), "|");
+						String clientValues[] = StringUtils.splitPreserveAllTokens(values[3].trim(), FIELD_SEPARATOR_CHAR);
 						int stringIndex = 0;
 						int numCuentasInt = Integer.valueOf(this.numCuentas);
 						Cuenta c = null;

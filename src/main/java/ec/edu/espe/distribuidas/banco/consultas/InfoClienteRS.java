@@ -22,8 +22,17 @@ public class InfoClienteRS implements Cuerpo {
 
 	public String asTexto() {
 
-		return resultado + codigoCliente + tipoDocumento + valorDocumento + apellido + nombre + direccion
-				+ numeroTelefonico + numeroMovil + correoElectronico + fechaNacimiento;
+		return resultado 
+				+ codigoCliente 
+				+ tipoDocumento + FIELD_SEPARATOR_CHAR 
+				+ valorDocumento + FIELD_SEPARATOR_CHAR
+				+ apellido + FIELD_SEPARATOR_CHAR 
+				+ nombre + FIELD_SEPARATOR_CHAR 
+				+ direccion + FIELD_SEPARATOR_CHAR
+				+ numeroTelefonico + FIELD_SEPARATOR_CHAR 
+				+ numeroMovil + FIELD_SEPARATOR_CHAR 
+				+ correoElectronico + FIELD_SEPARATOR_CHAR 
+				+ fechaNacimiento;
 	}
 
 	public InfoClienteRS() {
