@@ -8,29 +8,24 @@ public abstract class Mensaje {
 	protected Cuerpo cuerpo;
 	public static final String TIPO_MENSAJE_REQUEST = "RQ";
 	public static final String TIPO_MENSAJE_RESPONSE = "RS";
+	public static final String ID_MENSAJE_INFOCLIENTE = "CLIBUSSIMP";
+	public static final String ID_MENSAJE_CUENTACLIENTE = "CLIBUSCUEN";
+	public static final String ID_MENSAJE_AUTENTICACION = "AUTENTIC01";
+	public static final String ID_MENSAJE_DEPOSITO = "TRADEPOSIT";
+	public static final String ID_MENSAJE_RETIRO = "TRARETIROV";
 
-	public Mensaje() {
 
-	}
 
 	public boolean validateBobyHash() {
 		return DigestUtils.md5Hex(this.cuerpo.asTexto()).equals(cabecera.getVerificacion());
 
 	}
 
-	public Cabecera getCabecera() {
-		return cabecera;
-	}
-
-	public void setCabecera(Cabecera cabecera) {
-		this.cabecera = cabecera;
-	}
-
 	public void setCuerpo(Cuerpo cuerpo) {
 		this.cuerpo = cuerpo;
 		this.cabecera.setLongitudCuerpo(String.valueOf(this.cuerpo.asTexto().length()));
 		this.cabecera.setVerificacion(DigestUtils.md5Hex(this.cuerpo.asTexto()));
-		
+
 	}
 
 	public Cuerpo getCuerpo() {
@@ -50,6 +45,21 @@ public abstract class Mensaje {
 
 		return this.cabecera.asTexto() + this.cuerpo.asTexto();
 
+	}
+
+	public abstract boolean build(String input);
+
+	public boolean validate(String input) {
+
+		return input.length() >= Cabecera.HEADER_LENGTH;
+	}
+
+	public Cabecera getCabecera() {
+		return cabecera;
+	}
+
+	public void setCabecera(Cabecera cabecera) {
+		this.cabecera = cabecera;
 	}
 
 }

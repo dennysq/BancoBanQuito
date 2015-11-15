@@ -1,5 +1,6 @@
 package ec.edu.espe.distribuidas.banco.test;
 
+
 import ec.edu.espe.distribuidas.banco.MensajeRQ;
 import ec.edu.espe.distribuidas.banco.MensajeRS;
 import ec.edu.espe.distribuidas.banco.consultas.CuentaClienteRQ;
@@ -44,7 +45,8 @@ public class Tester {
 		mensajeRq = new MensajeRQ("12345678", "TRADEPOSIT");
 		mensajeRq.setCuerpo(dr);
 		System.out.println(mensajeRq.asTexto());
-		System.out.println("===============================================================================================================");
+		System.out.println(
+				"===============================================================================================================");
 		// sha1Hex
 		// md2md5
 		// DigestUtil
@@ -53,16 +55,30 @@ public class Tester {
 		test.build("OKO123456789CEDUL|0604133546|Dennys|Quiroz|Armenia 1||0983015478|dennys@gmail.com|1993-12-12");
 		mensajeRs.setCuerpo(test);
 		System.out.println(mensajeRs.asTexto());
-		System.out.println("===============================================================================================================");
+		System.out.println(
+				"===============================================================================================================");
 		mensajeRs = new MensajeRS("12345678", "CLIBUSCUEN");
 		CuentaClienteRS test2 = new CuentaClienteRS();
-		test2.build("OKO123456789030001|AH||20151101122010|0002|CO|2412,12|20151101122010|0003|AH|300,12|20151101122010");
+		test2.build(
+				"OKO123456789030001|AH||20151101122010|0002|CO|2412,12|20151101122010|0003|AH|300,12|20151101122010");
 		mensajeRs.setCuerpo(test2);
 		System.out.println(mensajeRs.asTexto());
 		System.out.println(test2);
-		
-		
-		
+
+		// mensajeRs.getCabecera().setVerificacion(mensajeRs.getCabecera().getVerificacion().replace('a',
+		// 'b'));
+		System.out.println(mensajeRs.validateBobyHash());
+		String message = "RS0000000000001234567820151115104210123CLIBUSCUEN00996fb6aaba394b3b6759160add3b53b070OKO123456789030001|AH||20151101122010|0002|CO|2412,12|20151101122010|0003|AH|300,12|20151101122010";
+		MensajeRS m = new MensajeRS("12345678", "CLIBUSSIMP");
+		if (m.build(message)) {
+			System.out.println(m.asTexto());
+			System.out.println(m.validateBobyHash());
+
+		} else {
+			System.out.println("Fallo la construcción del mensaje");
+		}
+
+
 
 	}
 

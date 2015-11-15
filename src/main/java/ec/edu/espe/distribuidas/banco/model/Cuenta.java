@@ -46,7 +46,7 @@ public class Cuenta {
 
 	@Override
 	public String toString() {
-		//luis (y)
+		
 		return  numeroCuenta +Cuerpo.FIELD_SEPARATOR_CHAR + tipoCuenta +Cuerpo.FIELD_SEPARATOR_CHAR + saldoActual
 				+ Cuerpo.FIELD_SEPARATOR_CHAR+ fechaYHoraUM + Cuerpo.FIELD_SEPARATOR_CHAR;
 	}

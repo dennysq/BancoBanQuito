@@ -19,7 +19,7 @@ public class CuentaClienteRS implements Cuerpo {
 
 	public String asTexto() {
 
-		return this.resultado + this.codigoCliente + this.numCuentas+cuentas;
+		return this.resultado + this.codigoCliente + this.numCuentas + cuentasAsTexto();
 
 	}
 
@@ -108,4 +108,14 @@ public class CuentaClienteRS implements Cuerpo {
 				+ numCuentas + ", cuentas=" + cuentas + "]";
 	}
 
+	public String cuentasAsTexto() {
+		String text = "";
+		if (this.cuentas != null) {
+
+			for (Cuenta c : this.cuentas) {
+				text += c.toString();
+			}
+		}
+		return text;
+	}
 }

@@ -1,6 +1,7 @@
 package ec.edu.espe.distribuidas.banco;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
@@ -14,6 +15,7 @@ public class Cabecera {
 	private String idMensaje;
 	private String longitudCuerpo;
 	private String verificacion;
+	public static final int HEADER_LENGTH = 85;
 
 	/**
 	 * @param tipoMensaje
@@ -26,8 +28,11 @@ public class Cabecera {
 		this.setOriginador(originador);
 		this.idMensaje = idMensaje;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-		this.fecha = sdf.format(new Date());
+		this.fecha = sdf.format(Calendar.getInstance().getTime());
 
+	}
+
+	public Cabecera() {
 	}
 
 	public String getFecha() {
@@ -122,21 +127,21 @@ public class Cabecera {
 
 	}
 
-//	public String asTextoSinVerificacion() {
-//		StringBuilder sb = new StringBuilder();
-//		sb.append(this.tipoMensaje);
-//		sb.append(this.originador);
-//		sb.append(this.fecha);
-//		sb.append(this.idMensaje);
-//		sb.append(this.getLongitudCuerpo());
-//		return sb.toString();
-//	}
+	// public String asTextoSinVerificacion() {
+	// StringBuilder sb = new StringBuilder();
+	// sb.append(this.tipoMensaje);
+	// sb.append(this.originador);
+	// sb.append(this.fecha);
+	// sb.append(this.idMensaje);
+	// sb.append(this.getLongitudCuerpo());
+	// return sb.toString();
+	// }
 
 	public boolean validate(String input) {
-		return input.length() == (2 + 20 + 17 + 10 + 4 + 32);
+		return input.length() == HEADER_LENGTH;
 	}
 
-	public void build(String input) {
+	public boolean build(String input) {
 		if (validate(input)) {
 			try {
 				String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 2, 20, 17, 10, 4, 32 });
@@ -147,13 +152,14 @@ public class Cabecera {
 				this.idMensaje = values[3];
 				this.longitudCuerpo = values[4];
 				this.verificacion = values[5];
-				
-
+				return true;
 			} catch (Exception e) {
 
-				e.printStackTrace();
+				// e.printStackTrace();
+				System.out.println("" + e);
 			}
 
 		}
+		return false;
 	}
 }

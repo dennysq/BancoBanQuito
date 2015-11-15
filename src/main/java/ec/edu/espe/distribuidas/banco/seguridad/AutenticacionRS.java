@@ -5,6 +5,10 @@ import ec.edu.espe.distribuidas.banco.Cuerpo;
 public class AutenticacionRS implements Cuerpo {
 	private String message;
 
+	public AutenticacionRS() {
+
+	}
+
 	public String asTexto() {
 
 		return this.message;
