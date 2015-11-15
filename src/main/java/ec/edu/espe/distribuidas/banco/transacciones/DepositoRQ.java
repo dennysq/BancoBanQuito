@@ -1,6 +1,5 @@
 package ec.edu.espe.distribuidas.banco.transacciones;
 
-
 import org.apache.commons.lang3.StringUtils;
 
 import ec.edu.espe.distribuidas.banco.Cuerpo;
@@ -31,7 +30,7 @@ public class DepositoRQ implements Cuerpo {
 	}
 
 	public void setValor(String valor) {
-		
+
 		this.valor = StringUtils.leftPad(valor, 10, "0");
 	}
 
@@ -44,19 +43,19 @@ public class DepositoRQ implements Cuerpo {
 	}
 
 	public void setNumeroCuenta(String numeroCuenta) {
-		this.numeroCuenta = numeroCuenta;
+		this.numeroCuenta = StringUtils.leftPad(numeroCuenta, 9, "0");
 	}
 
 	public void setTipoCuenta(String tipoCuenta) {
-		this.tipoCuenta = tipoCuenta;
+		this.tipoCuenta = StringUtils.leftPad(tipoCuenta, 2, "0");
 	}
 
 	public void setTipoDocumentoDepositante(String tipoDocumentoDepositante) {
-		this.tipoDocumentoDepositante = tipoDocumentoDepositante;
+		this.tipoDocumentoDepositante = StringUtils.rightPad(tipoDocumentoDepositante, 5, " ");
 	}
 
 	public void setValorDocumentoDepositante(String valorDocumentoDepositante) {
-		this.valorDocumentoDepositante = valorDocumentoDepositante;
+		this.valorDocumentoDepositante = StringUtils.rightPad(valorDocumentoDepositante, 15, " ");
 	}
 
 	public boolean validate(String input) {
@@ -66,7 +65,7 @@ public class DepositoRQ implements Cuerpo {
 
 	public void build(String input) {
 		// TODO Luis Valdebenito
-		
+
 	}
 
 }

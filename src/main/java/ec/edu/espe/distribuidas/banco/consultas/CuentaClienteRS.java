@@ -19,10 +19,8 @@ public class CuentaClienteRS implements Cuerpo {
 
 	public String asTexto() {
 
-		return this.resultado
-				+this.codigoCliente
-				+this.numCuentas;
-				
+		return this.resultado + this.codigoCliente + this.numCuentas;
+
 	}
 
 	public String getCodigoCliente() {
@@ -71,32 +69,31 @@ public class CuentaClienteRS implements Cuerpo {
 				this.resultado = values[0];
 				if (this.resultado.equals("OKO")) {
 
-					this.codigoCliente = values[1];
-					this.numCuentas = values[2];
+					setCodigoCliente(values[1]);
+					setNumCuentas(values[2]);
 					if (cuentas == null) {
 						cuentas = new ArrayList<>();
 					} else {
 						cuentas.clear();
 					}
-					if (resultado.equals("OKO")) {
-						String clientValues[] = StringUtils.splitPreserveAllTokens(values[3].trim(), FIELD_SEPARATOR_CHAR);
-						int stringIndex = 0;
-						int numCuentasInt = Integer.valueOf(this.numCuentas);
-						Cuenta c = null;
-						for (int i = 0; i < numCuentasInt; i++) {
-							c = new Cuenta();
-							c.setNumeroCuenta(clientValues[stringIndex].trim());
-							stringIndex++;
-							c.setTipoCuenta(clientValues[stringIndex].trim());
-							stringIndex++;
-							c.setSaldoActual(clientValues[stringIndex].trim());
-							stringIndex++;
-							c.setFechaYHoraUM(clientValues[stringIndex].trim());
-							stringIndex++;
-							this.cuentas.add(c);
-						}
 
+					String clientValues[] = StringUtils.splitPreserveAllTokens(values[3].trim(), FIELD_SEPARATOR_CHAR);
+					int stringIndex = 0;
+					int numCuentasInt = Integer.valueOf(this.numCuentas);
+					Cuenta c = null;
+					for (int i = 0; i < numCuentasInt; i++) {
+						c = new Cuenta();
+						c.setNumeroCuenta(clientValues[stringIndex].trim());
+						stringIndex++;
+						c.setTipoCuenta(clientValues[stringIndex].trim());
+						stringIndex++;
+						c.setSaldoActual(clientValues[stringIndex].trim());
+						stringIndex++;
+						c.setFechaYHoraUM(clientValues[stringIndex].trim());
+						stringIndex++;
+						this.cuentas.add(c);
 					}
+
 				}
 			} catch (Exception e) {
 

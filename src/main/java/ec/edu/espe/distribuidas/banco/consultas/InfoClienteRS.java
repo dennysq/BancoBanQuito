@@ -22,17 +22,10 @@ public class InfoClienteRS implements Cuerpo {
 
 	public String asTexto() {
 
-		return resultado 
-				+ codigoCliente 
-				+ tipoDocumento + FIELD_SEPARATOR_CHAR 
-				+ valorDocumento + FIELD_SEPARATOR_CHAR
-				+ apellido + FIELD_SEPARATOR_CHAR 
-				+ nombre + FIELD_SEPARATOR_CHAR 
-				+ direccion + FIELD_SEPARATOR_CHAR
-				+ numeroTelefonico + FIELD_SEPARATOR_CHAR 
-				+ numeroMovil + FIELD_SEPARATOR_CHAR 
-				+ correoElectronico + FIELD_SEPARATOR_CHAR 
-				+ fechaNacimiento;
+		return resultado + codigoCliente + tipoDocumento + FIELD_SEPARATOR_CHAR + valorDocumento + FIELD_SEPARATOR_CHAR
+				+ apellido + FIELD_SEPARATOR_CHAR + nombre + FIELD_SEPARATOR_CHAR + direccion + FIELD_SEPARATOR_CHAR
+				+ numeroTelefonico + FIELD_SEPARATOR_CHAR + numeroMovil + FIELD_SEPARATOR_CHAR + correoElectronico
+				+ FIELD_SEPARATOR_CHAR + fechaNacimiento;
 	}
 
 	public InfoClienteRS() {
@@ -48,17 +41,17 @@ public class InfoClienteRS implements Cuerpo {
 				String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 3, 9, 400 });
 				this.resultado = values[0];
 				if (resultado.equals("OKO")) {
-					this.codigoCliente = values[1];
+					setCodigoCliente(values[1]);
 					String clientValues[] = StringUtils.splitPreserveAllTokens(values[2].trim(), "|");
-					this.tipoDocumento = clientValues[0].trim();
-					this.valorDocumento = clientValues[1].trim();
-					this.nombre = clientValues[2].trim();
-					this.apellido = clientValues[3].trim();
-					this.direccion = clientValues[4].trim();
-					this.numeroTelefonico = clientValues[5].trim();
-					this.numeroMovil = clientValues[6].trim();
-					this.correoElectronico = clientValues[7].trim();
-					this.fechaNacimiento = clientValues[8].trim();
+					setTipoDocumento(clientValues[0].trim());
+					setValorDocumento(clientValues[1].trim());
+					setNombre(clientValues[2].trim());
+					setApellido(clientValues[3].trim());
+					setDireccion(clientValues[4].trim());
+					setNumeroTelefonico(clientValues[5].trim());
+					setNumeroMovil(clientValues[6].trim());
+					setCorreoElectronico(clientValues[7].trim());
+					setFechaNacimiento(clientValues[8].trim());
 				}
 			} catch (Exception e) {
 

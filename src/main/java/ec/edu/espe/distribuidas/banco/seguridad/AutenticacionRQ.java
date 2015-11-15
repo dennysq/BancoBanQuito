@@ -10,7 +10,7 @@ public class AutenticacionRQ implements Cuerpo {
 
 	public String asTexto() {
 
-		return this.usuario+this.clave;
+		return this.usuario + this.clave;
 	}
 
 	public String getUsuario() {
@@ -18,7 +18,7 @@ public class AutenticacionRQ implements Cuerpo {
 	}
 
 	public void setUsuario(String usuario) {
-		this.usuario=StringUtils.rightPad(usuario, 10);
+		this.usuario = StringUtils.rightPad(usuario, 10, " ");
 	}
 
 	public String getClave() {
@@ -26,7 +26,7 @@ public class AutenticacionRQ implements Cuerpo {
 	}
 
 	public void setClave(String clave) {
-		this.clave = StringUtils.rightPad(clave, 10);
+		this.clave = StringUtils.rightPad(clave, 10, " ");
 	}
 
 	public boolean validate(String input) {
@@ -36,7 +36,7 @@ public class AutenticacionRQ implements Cuerpo {
 
 	public void build(String input) {
 		// TODO Marco Palacios
-		
+
 	}
 
 }
