@@ -3,6 +3,7 @@ package ec.edu.espe.distribuidas.banco.consultas;
 import org.apache.commons.lang3.StringUtils;
 
 import ec.edu.espe.distribuidas.banco.Cuerpo;
+
 import ec.edu.espe.distribuidas.banco.util.MyStringUtils;
 
 public class InfoClienteRS implements Cuerpo {
@@ -21,26 +22,27 @@ public class InfoClienteRS implements Cuerpo {
 
 	public String asTexto() {
 
-		return this.codigoCliente;
+		return resultado + codigoCliente + tipoDocumento + valorDocumento + apellido + nombre + direccion
+				+ numeroTelefonico + numeroMovil + correoElectronico + fechaNacimiento;
 	}
 
 	public InfoClienteRS() {
 
 	}
 
-	public void build(String in) {
-		if (this.validate(in)) {
+	public void build(String input) {
+		if (this.validate(input)) {
 			try {
-				if (in.length() < 412) {
-					in = StringUtils.rightPad(in, 412, " ");
+				if (input.length() < 412) {
+					input = StringUtils.rightPad(input, 412, " ");
 				}
-				String values[] = MyStringUtils.splitByFixedLengths(in, new int[] { 3, 9, 400 });
+				String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 3, 9, 400 });
 				this.resultado = values[0];
-				this.codigoCliente = values[1];
 				if (resultado.equals("OKO")) {
+					this.codigoCliente = values[1];
 					String clientValues[] = StringUtils.splitPreserveAllTokens(values[2].trim(), "|");
 					this.tipoDocumento = clientValues[0].trim();
-					this.valorDocumento=clientValues[1].trim();
+					this.valorDocumento = clientValues[1].trim();
 					this.nombre = clientValues[2].trim();
 					this.apellido = clientValues[3].trim();
 					this.direccion = clientValues[4].trim();
@@ -58,8 +60,8 @@ public class InfoClienteRS implements Cuerpo {
 			// validate
 	}
 
-	private boolean validate(String datos) {
-		return datos.length() >= 12 && datos.length() < 412;
+	public boolean validate(String input) {
+		return input.length() >= 3 && input.length() <= 412;
 
 	}
 
@@ -68,7 +70,7 @@ public class InfoClienteRS implements Cuerpo {
 	}
 
 	public void setCodigoCliente(String codigoCliente) {
-		this.codigoCliente = codigoCliente;
+		this.codigoCliente = StringUtils.leftPad(codigoCliente, 9, "0");
 	}
 
 	public String getResultado() {

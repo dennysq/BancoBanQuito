@@ -1,21 +1,21 @@
 package ec.edu.espe.distribuidas.banco.transacciones;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+
+import org.apache.commons.lang3.StringUtils;
 
 import ec.edu.espe.distribuidas.banco.Cuerpo;
 
 public class DepositoRQ implements Cuerpo {
 	private String numeroCuenta;
 	private String tipoCuenta;
-	private Float valor;
+	private String valor;
 	private String tipoDocumentoDepositante;
 	private String valorDocumentoDepositante;
 
 	public String asTexto() {
-		BigDecimal bd = new BigDecimal(valor);
-		return this.numeroCuenta + this.tipoCuenta + bd.setScale(2, RoundingMode.HALF_EVEN).toString()
-				+ this.tipoDocumentoDepositante + this.valorDocumentoDepositante;
+
+		return this.numeroCuenta + this.tipoCuenta + this.valor + this.tipoDocumentoDepositante
+				+ this.valorDocumentoDepositante;
 	}
 
 	public String getNumeroCuenta() {
@@ -30,11 +30,12 @@ public class DepositoRQ implements Cuerpo {
 		return tipoDocumentoDepositante;
 	}
 
-	public void setValor(Float valor) {
-		this.valor = valor;
+	public void setValor(String valor) {
+		
+		this.valor = StringUtils.leftPad(valor, 10, "0");
 	}
 
-	public Float getValor() {
+	public String getValor() {
 		return valor;
 	}
 
@@ -56,6 +57,16 @@ public class DepositoRQ implements Cuerpo {
 
 	public void setValorDocumentoDepositante(String valorDocumentoDepositante) {
 		this.valorDocumentoDepositante = valorDocumentoDepositante;
+	}
+
+	public boolean validate(String input) {
+		// TODO Luis Valdebenito
+		return false;
+	}
+
+	public void build(String input) {
+		// TODO Luis Valdebenito
+		
 	}
 
 }

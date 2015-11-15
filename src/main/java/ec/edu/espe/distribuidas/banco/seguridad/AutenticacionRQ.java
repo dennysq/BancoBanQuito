@@ -29,4 +29,14 @@ public class AutenticacionRQ implements Cuerpo {
 		this.clave = StringUtils.rightPad(clave, 10);
 	}
 
+	public boolean validate(String input) {
+		// TODO Marco Palacios
+		return false;
+	}
+
+	public void build(String input) {
+		// TODO Marco Palacios
+		
+	}
+
 }

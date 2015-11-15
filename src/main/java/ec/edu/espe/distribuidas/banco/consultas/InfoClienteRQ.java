@@ -21,12 +21,22 @@ public class InfoClienteRQ implements Cuerpo {
 	}
 
 	public void setValor(String valor) {
-		this.valor = valor;
+		this.valor = StringUtils.rightPad(valor, 15, " ");
 	}
 
 	public String asTexto() {
 
 		return this.tipoDocumento + this.valor;
+	}
+
+	public boolean validate(String input) {
+		// TODO Marco Palacios
+		return false;
+	}
+
+	public void build(String input) {
+		// TODO Marco Palacios
+
 	}
 
 }

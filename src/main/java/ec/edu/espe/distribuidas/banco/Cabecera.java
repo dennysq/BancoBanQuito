@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ec.edu.espe.distribuidas.banco.util.MyStringUtils;
+
 public class Cabecera {
 	private String tipoMensaje;
 	private String originador;
@@ -21,7 +23,7 @@ public class Cabecera {
 	public Cabecera(String tipoMensaje, String originador, String idMensaje) {
 		super();
 		this.tipoMensaje = tipoMensaje;
-		this.originador = StringUtils.leftPad(originador, 20,"0");;
+		this.setOriginador(originador);
 		this.idMensaje = idMensaje;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		this.fecha = sdf.format(new Date());
@@ -45,7 +47,7 @@ public class Cabecera {
 	}
 
 	public void setOriginador(String originador) {
-		this.originador = StringUtils.leftPad(originador, 20,"0");
+		this.originador = StringUtils.leftPad(originador, 20, "0");
 	}
 
 	public String getIdMensaje() {
@@ -119,15 +121,39 @@ public class Cabecera {
 		return sb.toString();
 
 	}
-	public String asTextoSinVerificacion() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(this.tipoMensaje);
-		sb.append(this.originador);
-		sb.append(this.fecha);
-		sb.append(this.idMensaje);
-		sb.append(this.getLongitudCuerpo());
-		return sb.toString();
-	}
-	
 
+//	public String asTextoSinVerificacion() {
+//		StringBuilder sb = new StringBuilder();
+//		sb.append(this.tipoMensaje);
+//		sb.append(this.originador);
+//		sb.append(this.fecha);
+//		sb.append(this.idMensaje);
+//		sb.append(this.getLongitudCuerpo());
+//		return sb.toString();
+//	}
+
+	public boolean validate(String input) {
+		return input.length() == (2 + 20 + 17 + 10 + 4 + 32);
+	}
+
+	public void build(String input) {
+		if (validate(input)) {
+			try {
+				String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 2, 20, 17, 10, 4, 32 });
+
+				this.tipoMensaje = values[0];
+				this.originador = values[1];
+				this.fecha = values[2];
+				this.idMensaje = values[3];
+				this.longitudCuerpo = values[4];
+				this.verificacion = values[5];
+				
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+
+		}
+	}
 }

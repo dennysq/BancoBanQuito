@@ -21,4 +21,16 @@ public class AutenticacionRS implements Cuerpo {
 	public AutenticacionRS(String message) {
 		this.message = message;
 	}
+
+	public boolean validate(String input) {
+
+		return input.length() == 2;
+	}
+
+	public void build(String input) {
+		if (validate(input)) {
+			this.message = input;
+		}
+
+	}
 }
