@@ -15,7 +15,7 @@ public class MensajeRQ extends Mensaje {
 		boolean result = true;
 		if (validate(input)) {
 			this.cabecera = new Cabecera();
-
+            //Prueba repositorio GIT
 			if (this.cabecera.build(input.substring(0, Cabecera.HEADER_LENGTH))) {
 				//se obtiene el resto del mensaje que seria el cuerpo
 				String cuerpo = input.substring(Cabecera.HEADER_LENGTH);
