@@ -3,6 +3,7 @@ package ec.edu.espe.distribuidas.banco.transacciones;
 import org.apache.commons.lang3.StringUtils;
 
 import ec.edu.espe.distribuidas.banco.Cuerpo;
+import ec.edu.espe.distribuidas.banco.util.MyStringUtils;
 
 public class DepositoRQ implements Cuerpo {
 	private String numeroCuenta;
@@ -59,12 +60,29 @@ public class DepositoRQ implements Cuerpo {
 	}
 
 	public boolean validate(String input) {
-		// TODO Luis Valdebenito
-		return false;
+		return input.length() >= 1 && input.length() <= 41;
 	}
 
 	public void build(String input) {
 		// TODO Luis Valdebenito
+		if (validate(input)) {
+			try {
+				String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 9, 2, 10, 5, 15 });
+
+				setNumeroCuenta(values[0]);// para que se haga el leftpad
+				setTipoCuenta(values[1]);
+				setValor(values[2]);
+				setTipoDocumentoDepositante(values[3]);
+				setValorDocumentoDepositante(valorDocumentoDepositante = values[4]);
+
+			} catch (Exception e) {
+
+				// e.printStackTrace();
+				System.out.println("" + e);
+			}
+
+		}
+
 
 	}
 

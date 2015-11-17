@@ -3,6 +3,7 @@ package ec.edu.espe.distribuidas.banco;
 import ec.edu.espe.distribuidas.banco.consultas.CuentaClienteRQ;
 import ec.edu.espe.distribuidas.banco.consultas.InfoClienteRQ;
 import ec.edu.espe.distribuidas.banco.seguridad.AutenticacionRQ;
+import ec.edu.espe.distribuidas.banco.transacciones.DepositoRQ;
 import ec.edu.espe.distribuidas.banco.transacciones.RetiroRQ;
 
 public class MensajeRQ extends Mensaje {
@@ -42,6 +43,9 @@ public class MensajeRQ extends Mensaje {
 						break;
 					case ID_MENSAJE_DEPOSITO:
 						// TODO LUIS VALDEBENITO
+						DepositoRQ depRQ = new DepositoRQ();
+						depRQ.build(cuerpo);
+						this.cuerpo = depRQ;
 						break;
 					case ID_MENSAJE_INFOCLIENTE:
 						InfoClienteRQ infoRQ = new InfoClienteRQ();
