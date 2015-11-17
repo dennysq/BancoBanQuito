@@ -12,7 +12,7 @@ public class RetiroRQ implements Cuerpo {
 	private String Valor;
 	private String TipoDocumentoCliente;
 	private String ValorDocumentoCliente;
-	
+
 	@Override
 	public String asTexto() {
 
@@ -29,14 +29,14 @@ public class RetiroRQ implements Cuerpo {
 	public void build(String input) {
 		if (validate(input)) {
 			try {
-				String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 9, 2, 10, 5, 15});
+				String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 9, 2, 10, 5, 15 });
 
-				this.NumeroCuenta = values[0];
-				this.TipoCuenta= values[1];
-				this.Valor = values[2];
-				this.TipoDocumentoCliente = values[3];
-				this.ValorDocumentoCliente= values[4];
-				
+				setNumeroCuenta(values[0]);// para que se haga el leftpad
+				setTipoCuenta(values[1]);
+				setValor(values[2]);
+				setTipoDocumentoCliente(values[3]);
+				setValorDocumentoCliente(ValorDocumentoCliente = values[4]);
+
 			} catch (Exception e) {
 
 				// e.printStackTrace();
@@ -44,7 +44,7 @@ public class RetiroRQ implements Cuerpo {
 			}
 
 		}
-	
+
 	}
 
 	public String getNumeroCuenta() {
@@ -52,7 +52,7 @@ public class RetiroRQ implements Cuerpo {
 	}
 
 	public void setNumeroCuenta(String numeroCuenta) {
-		this.NumeroCuenta=StringUtils.leftPad(numeroCuenta, 9, "0");
+		this.NumeroCuenta = StringUtils.leftPad(numeroCuenta, 9, "0");
 	}
 
 	public String getTipoCuenta() {
@@ -68,7 +68,7 @@ public class RetiroRQ implements Cuerpo {
 	}
 
 	public void setValor(String valor) {
-		Valor = StringUtils.leftPad(valor,10, "0");
+		Valor = StringUtils.leftPad(valor, 10, "0");
 	}
 
 	public String getTipoDocumentoCliente() {
@@ -84,6 +84,6 @@ public class RetiroRQ implements Cuerpo {
 	}
 
 	public void setValorDocumentoCliente(String valorDocumentoCliente) {
-		this.ValorDocumentoCliente = StringUtils.rightPad(valorDocumentoCliente,15, " ");
+		this.ValorDocumentoCliente = StringUtils.rightPad(valorDocumentoCliente, 15, " ");
 	}
 }

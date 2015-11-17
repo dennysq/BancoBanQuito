@@ -28,7 +28,7 @@ public class CuentaClienteRQ implements Cuerpo {
 	public void build(String input) {
 		// TODO Marco Palacios
 		if (validate(input)) {
-			this.codigoCliente=input;
+			setCodigoCliente(input);//use este metodo porque le hace el leftpad automaticamente
 		}
 	}
 

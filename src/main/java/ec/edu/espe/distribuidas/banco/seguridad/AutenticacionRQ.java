@@ -33,7 +33,7 @@ public class AutenticacionRQ implements Cuerpo {
 	public boolean validate(String input) {
 		// TODO Marco Palacios
 		return input.length() >= 1 && input.length() <= 20;
-	
+
 	}
 
 	public void build(String input) {
@@ -41,11 +41,15 @@ public class AutenticacionRQ implements Cuerpo {
 		if (this.validate(input)) {
 			if (validate(input)) {
 				try {
-					String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 10, 10});
+					if (input.length() < 20) {
+						//DQ esto nos ayuda a que en el metodo splitByFixedLengths no nos bote la exception
+						StringUtils.rightPad(input, 20, " ");
 
+					}
+					String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 10, 10 });
 					this.usuario = values[0];
-					this.clave= values[1];
-			
+					this.clave = values[1];
+
 				} catch (Exception e) {
 
 					// e.printStackTrace();
@@ -53,9 +57,9 @@ public class AutenticacionRQ implements Cuerpo {
 				}
 
 			}
-				
-		} 
-	
+
+		}
+
 	}
 
 }

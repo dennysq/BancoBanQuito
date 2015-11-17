@@ -6,6 +6,8 @@ import ec.edu.espe.distribuidas.banco.seguridad.AutenticacionRQ;
 import ec.edu.espe.distribuidas.banco.transacciones.RetiroRQ;
 
 public class MensajeRQ extends Mensaje {
+	public MensajeRQ() {
+	}
 
 	public MensajeRQ(String originador, String idMensaje) {
 		this.cabecera = new Cabecera(Mensaje.TIPO_MENSAJE_REQUEST, originador, idMensaje);
@@ -16,9 +18,9 @@ public class MensajeRQ extends Mensaje {
 		boolean result = true;
 		if (validate(input)) {
 			this.cabecera = new Cabecera();
-            //Prueba repositorio GIT
+			// Prueba repositorio GIT
 			if (this.cabecera.build(input.substring(0, Cabecera.HEADER_LENGTH))) {
-				//se obtiene el resto del mensaje que seria el cuerpo
+				// se obtiene el resto del mensaje que seria el cuerpo
 				String cuerpo = input.substring(Cabecera.HEADER_LENGTH);
 				if (this.cabecera.getTipoMensaje().equals(Mensaje.TIPO_MENSAJE_REQUEST)) {
 					switch (this.cabecera.getIdMensaje()) {

@@ -39,12 +39,14 @@ public class InfoClienteRQ implements Cuerpo {
 		// TODO Marco Palacios
 		if (validate(input)) {
 			try {
-				String values[] = MyStringUtils.splitByFixedLengths(input, new int[] {5, 10});
+				if (input.length() < 20) {
+					input = StringUtils.rightPad(input, 20, " ");
+				}
+				String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 5, 15 });//aqui estaba 10 marco le cambie a 15
 
 				this.tipoDocumento = values[0];
-				this.valor= values[1];
+				setValor(values[1]);//para que se haga el rightPad
 
-				
 			} catch (Exception e) {
 
 				// e.printStackTrace();
