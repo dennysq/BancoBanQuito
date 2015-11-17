@@ -29,6 +29,11 @@ public class RetiroRQ implements Cuerpo {
 	public void build(String input) {
 		if (validate(input)) {
 			try {
+				if (input.length() < 41) {
+					//DQ esto nos ayuda a que en el metodo splitByFixedLengths no nos bote la exception
+					StringUtils.rightPad(input, 41, " ");
+
+				}
 				String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 9, 2, 10, 5, 15 });
 
 				setNumeroCuenta(values[0]);// para que se haga el leftpad
