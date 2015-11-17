@@ -38,7 +38,7 @@ public class RetiroRS implements Cuerpo {
 
 	public boolean validate(String input) {
 		
-		return input.length() >= 3 && input.length() <= 12;
+		return input.length() >= 2 && input.length() <= 12;
 	}
 
 	public void build(String input) {
@@ -50,13 +50,18 @@ public class RetiroRS implements Cuerpo {
 				String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 2, 10 });
 				this.resultado = values[0];
 				if (resultado.equals("00")){
+					if(!values[1].trim().isEmpty()){
 					setSaldoActual(values[1]);
+					}else{
+						System.out.println("el mensaje no es valido, necesita un valor");
+					}
+				}else{
+					setSaldoActual(values[1].trim());
 				}
-				
 			} catch(Exception e){
 				e.printStackTrace();
 			}
-			this.resultado = input;
+			
 		}
 		
 

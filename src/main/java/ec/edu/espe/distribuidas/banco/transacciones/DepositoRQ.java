@@ -61,7 +61,7 @@ public class DepositoRQ implements Cuerpo {
 
 	public boolean validate(String input) {
 		// TODO Luis Valdebenito
-		return input.length() >= 1 && input.length() <= 41;
+		return input.length() >= 29 && input.length() <= 41;// un cliente puede tener numeroDocumento de 3 hasta 15
 	}
 
 	public void build(String input) {

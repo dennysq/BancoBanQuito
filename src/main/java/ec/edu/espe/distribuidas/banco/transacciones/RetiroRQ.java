@@ -22,7 +22,7 @@ public class RetiroRQ implements Cuerpo {
 
 	@Override
 	public boolean validate(String input) {
-		return input.length() >= 1 && input.length() <= 41;
+		return input.length() >= 29 && input.length() <= 41;// un cliente puede tener numeroDocumento de 3 hasta 15
 	}
 
 	@Override

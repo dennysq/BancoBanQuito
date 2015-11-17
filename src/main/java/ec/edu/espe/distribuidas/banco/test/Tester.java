@@ -91,6 +91,23 @@ public class Tester {
 		} else {
 			System.out.println("Fallo la construcción del mensaje");
 		}
+		
+		System.out.println(
+				">>>>Prueba Mensaje Response para retiro del cliente, idmensaje=" + Mensaje.ID_MENSAJE_RETIRO);
+		message = "RS0000000000001234567820151116224010898" + Mensaje.ID_MENSAJE_RETIRO + "00026fb6aaba394b3b6759160add3b53b07000";
+		m = new MensajeRS();
+		System.out.println("Mensaje Entrante: " + message);
+		if (m.build(message)) {
+
+			System.out.println("Mensaje construido: " + m.asTexto());
+			System.out.println("Hash Entrante:" + m.getCabecera().getVerificacion());
+			System.out.println("Hash Generado del cuerpo:" + DigestUtils.md5Hex(m.getCuerpo().asTexto()));
+			System.out.println("Hash correcto?: " + m.validateBobyHash());
+
+		} else {
+			System.out.println("Fallo la construcción del mensaje");
+		}
+
 	}
 
 }
