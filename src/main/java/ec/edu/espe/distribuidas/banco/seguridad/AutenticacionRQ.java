@@ -3,6 +3,7 @@ package ec.edu.espe.distribuidas.banco.seguridad;
 import org.apache.commons.lang3.StringUtils;
 
 import ec.edu.espe.distribuidas.banco.Cuerpo;
+import ec.edu.espe.distribuidas.banco.util.MyStringUtils;
 
 public class AutenticacionRQ implements Cuerpo {
 	private String usuario;
@@ -31,12 +32,30 @@ public class AutenticacionRQ implements Cuerpo {
 
 	public boolean validate(String input) {
 		// TODO Marco Palacios
-		return false;
+		return input.length() >= 1 && input.length() <= 20;
+	
 	}
 
 	public void build(String input) {
 		// TODO Marco Palacios
+		if (this.validate(input)) {
+			if (validate(input)) {
+				try {
+					String values[] = MyStringUtils.splitByFixedLengths(input, new int[] { 10, 10});
 
+					this.usuario = values[0];
+					this.clave= values[1];
+			
+				} catch (Exception e) {
+
+					// e.printStackTrace();
+					System.out.println("" + e);
+				}
+
+			}
+				
+		} 
+	
 	}
 
 }

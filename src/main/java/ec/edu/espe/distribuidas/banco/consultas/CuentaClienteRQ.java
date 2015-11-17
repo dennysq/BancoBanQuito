@@ -22,12 +22,14 @@ public class CuentaClienteRQ implements Cuerpo {
 
 	public boolean validate(String input) {
 		// TODO Marco Palacios
-		return false;
+		return input.length() >= 1 && input.length() <= 9;
 	}
 
 	public void build(String input) {
 		// TODO Marco Palacios
-
+		if (validate(input)) {
+			this.codigoCliente=input;
+		}
 	}
 
 }

@@ -3,6 +3,7 @@ package ec.edu.espe.distribuidas.banco;
 import ec.edu.espe.distribuidas.banco.consultas.CuentaClienteRQ;
 import ec.edu.espe.distribuidas.banco.consultas.InfoClienteRQ;
 import ec.edu.espe.distribuidas.banco.seguridad.AutenticacionRQ;
+import ec.edu.espe.distribuidas.banco.transacciones.RetiroRQ;
 
 public class MensajeRQ extends Mensaje {
 
@@ -23,6 +24,9 @@ public class MensajeRQ extends Mensaje {
 					switch (this.cabecera.getIdMensaje()) {
 					case ID_MENSAJE_RETIRO:
 						// TODO MARCO PALACIOS
+						RetiroRQ retRQ = new RetiroRQ();
+						retRQ.build(cuerpo);
+						this.cuerpo = retRQ;
 						break;
 					case ID_MENSAJE_AUTENTICACION:
 						AutenticacionRQ auth = new AutenticacionRQ();

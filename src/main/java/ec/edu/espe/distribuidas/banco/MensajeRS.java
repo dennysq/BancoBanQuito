@@ -3,6 +3,7 @@ package ec.edu.espe.distribuidas.banco;
 import ec.edu.espe.distribuidas.banco.consultas.CuentaClienteRS;
 import ec.edu.espe.distribuidas.banco.consultas.InfoClienteRS;
 import ec.edu.espe.distribuidas.banco.seguridad.AutenticacionRS;
+import ec.edu.espe.distribuidas.banco.transacciones.RetiroRS;
 
 public class MensajeRS extends Mensaje {
 
@@ -23,6 +24,9 @@ public class MensajeRS extends Mensaje {
 					switch (this.cabecera.getIdMensaje()) {
 					case ID_MENSAJE_RETIRO:
 						// TODO MARCO PALACIOS
+						RetiroRS retRS = new RetiroRS();
+						retRS.build(input.substring(Cabecera.HEADER_LENGTH));
+						this.cuerpo = retRS;
 						break;
 					case ID_MENSAJE_AUTENTICACION:
 						AutenticacionRS authRS = new AutenticacionRS();
@@ -33,7 +37,6 @@ public class MensajeRS extends Mensaje {
 						CuentaClienteRS accountRS = new CuentaClienteRS();
 						accountRS.build(input.substring(Cabecera.HEADER_LENGTH));
 						this.cuerpo = accountRS;
-
 						break;
 					case ID_MENSAJE_DEPOSITO:
 						// TODO LUIS VALDEBENITO
