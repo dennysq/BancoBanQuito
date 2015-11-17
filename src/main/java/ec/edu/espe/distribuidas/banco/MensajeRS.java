@@ -3,6 +3,7 @@ package ec.edu.espe.distribuidas.banco;
 import ec.edu.espe.distribuidas.banco.consultas.CuentaClienteRS;
 import ec.edu.espe.distribuidas.banco.consultas.InfoClienteRS;
 import ec.edu.espe.distribuidas.banco.seguridad.AutenticacionRS;
+import ec.edu.espe.distribuidas.banco.transacciones.DepositoRS;
 import ec.edu.espe.distribuidas.banco.transacciones.RetiroRS;
 
 public class MensajeRS extends Mensaje {
@@ -42,6 +43,10 @@ public class MensajeRS extends Mensaje {
 						break;
 					case ID_MENSAJE_DEPOSITO:
 						// TODO LUIS VALDEBENITO
+						DepositoRS depRS = new DepositoRS();
+						depRS.build(cuerpo);
+						this.cuerpo = depRS;
+						
 						break;
 					case ID_MENSAJE_INFOCLIENTE:
 						InfoClienteRS infoRS = new InfoClienteRS();

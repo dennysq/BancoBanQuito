@@ -1,9 +1,11 @@
 package ec.edu.espe.distribuidas.banco.transacciones;
 
+import org.apache.commons.lang3.StringUtils;
+
+import ec.edu.espe.distribuidas.banco.Cuerpo;
 
 
-
-public class DepositoRS  {
+public class DepositoRS implements Cuerpo  {
 	//TODO Luis Valdebenito 
 	private String resultado;
 	

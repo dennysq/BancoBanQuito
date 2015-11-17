@@ -60,6 +60,7 @@ public class DepositoRQ implements Cuerpo {
 	}
 
 	public boolean validate(String input) {
+		// TODO Luis Valdebenito
 		return input.length() >= 1 && input.length() <= 41;
 	}
 
